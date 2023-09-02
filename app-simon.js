@@ -12,18 +12,23 @@ let current=0;
 let input=false;
 let gmover;
 let score=0;
+let time;
 
 function blink(i){
+    if(i>5)
+    time=350;
+    else 
+    time=500;
 let b=setInterval( ()=> {
     boxes[arr[i]].classList.toggle('blink');
-},500);
+},time);
 setTimeout( ()=>{
     if(i<level-1)
     {blink(i+1);}
     else
     {input=true;}
     clearInterval(b);
-},1000);
+},(2*time));
 }
 
 function nextLevel(){
@@ -75,7 +80,9 @@ outBox.addEventListener("click",function(event){
             if(current==level)
             {
                 subH.innerHTML="good jod !!!"
-                nextLevel();
+                setTimeout(()=>{
+                    nextLevel();
+                },750);
             }
         
         }
